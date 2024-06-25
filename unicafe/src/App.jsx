@@ -1,14 +1,10 @@
-//Version 1.7
+//Version 1.6
 import { useState } from 'react'
 
 const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
-
-  const total=good+neutral+bad
-  const avg=((good*1)+(neutral*0)+(bad*-1))/total
-  const positive=(good*100)/total
 
   return (
     <div>
@@ -23,14 +19,9 @@ const App = () => {
       neutral {neutral}
       <br></br>
       bad {bad}
-      <br></br>
-      all {total}
-      <br></br>
-      average {avg}
-      <br></br>
-      positive {positive} %
     </div>
   )
 }
 
 export default App
+
