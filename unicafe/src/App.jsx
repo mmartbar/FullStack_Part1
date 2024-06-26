@@ -1,11 +1,34 @@
-//Version 1.9
+//Version 1.10
 import { useState } from 'react'
 
-const Statistics = (props) => {  
+const Statistics = (props) => {
+  console.log('Dentro de Statistics')
+  console.log(props)
   return (
     <>
-      {props.text} {props.stats} {props.symbol}
-    </>
+      <StatisticLine text={props.params[0].text} value={props.params[0].stats}/>
+      <StatisticLine text={props.params[1].text} value={props.params[1].stats}/>
+      <StatisticLine text={props.params[2].text} value={props.params[2].stats}/>
+      <StatisticLine text={props.params[3].text} value={props.params[3].stats}/>
+      <StatisticLine text={props.params[4].text} value={props.params[4].stats}/>
+      <StatisticLine text={props.params[5].text} value={props.params[5].stats} symbol={props.params[5].symbol}/>
+      <StatisticLine text={props.params[6].text} value={props.params[6].stats}/>
+    </> 
+  )
+}
+
+const StatisticLine = (props) => {
+  return (
+    <div>
+      {props.text} {props.value} {props.symbol}
+    </div>
+  )
+
+}
+
+const Button = (props) => {
+  return (
+    <button onClick={props.onClick}>{props.text}</button>
   )
 }
 
@@ -77,18 +100,12 @@ const App = () => {
   return (
     <div>
       <h1>give feedback</h1>
-      <button onClick = {() => setGood(good+1)}>good</button>
-      <button onClick = {() => setNeutral(neutral+1)}>neutral</button>
-      <button onClick={() => setBad(bad+1)}>bad</button>
+      <Button onClick={() => setGood(good+1)} text='good'/>
+      <Button onClick={() => setNeutral(neutral+1)} text='neutral'/>
+      <Button onClick={() => setBad(bad+1)} text='bad'/>
 
       <h1>statistics</h1>
-      <Statistics text={parameters[0].text} stats={parameters[0].stats}/>
-      <Statistics text={parameters[1].text} stats={parameters[1].stats}/>
-      <Statistics text={parameters[2].text} stats={parameters[2].stats}/>
-      <Statistics text={parameters[3].text} stats={parameters[3].stats}/>
-      <Statistics text={parameters[4].text} stats={parameters[4].stats}/>
-      <Statistics text={parameters[5].text} stats={parameters[5].stats} symbol={parameters[5].symbol}/>
-      <Statistics text={parameters[6].text} stats={parameters[6].stats}/>
+      <Statistics params={parameters}/>
     </div>
   )
 }
