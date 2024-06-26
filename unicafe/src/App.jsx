@@ -1,4 +1,4 @@
-//Version 1.10
+//Version 1.11
 import { useState } from 'react'
 
 const Statistics = (props) => {
@@ -19,9 +19,14 @@ const Statistics = (props) => {
 
 const StatisticLine = (props) => {
   return (
-    <div>
-      {props.text} {props.value} {props.symbol}
-    </div>
+    <tr>
+      <td>
+        {props.text}
+      </td>
+      <td>
+        {props.value} {props.symbol}
+      </td>
+    </tr>
   )
 
 }
@@ -105,7 +110,12 @@ const App = () => {
       <Button onClick={() => setBad(bad+1)} text='bad'/>
 
       <h1>statistics</h1>
-      <Statistics params={parameters}/>
+      <table>
+        <tbody>
+          <Statistics params={parameters}/>
+        </tbody>
+      </table>
+
     </div>
   )
 }
