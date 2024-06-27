@@ -1,4 +1,4 @@
-//Exercise 1.12
+//Exercise 1.13
 import { useState } from 'react'
 
 
@@ -13,24 +13,52 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
-  const [selected, setSelected] = useState(0)
+  const points = Array(anecdotes.length - 1)
+  points.fill(0, 0)
+  const [selected, setSelected] = useState({
+    anecdote: 0, 
+    votes: points
+  })
   
-  const random = () => {
+  console.log ('anecdote', selected.anecdote)
+  console.log ('votes', selected.votes)
+
+  const doRandom = () => {
     const min = 0
     const max = anecdotes.length - 1
+    const newAnecdote = {
+      anecdote: (Math.floor(Math.random() * (max-min) + min)),
+      votes: selected.votes
+    }
     return (
-      setSelected (Math.floor(Math.random() * (max-min) + min))
+      setSelected (newAnecdote)
+    )
+  }
+
+  const doVote = () => {
+    const pointsCopy = selected.votes
+    pointsCopy[selected.anecdote] += 1
+    
+    const newVotes = {
+      anecdote: selected.anecdote,
+      votes: pointsCopy
+    }
+
+    return (
+      setSelected (newVotes)
     )
   }
 
   return (
     <div>
-      {anecdotes[selected]}
+      {anecdotes[selected.anecdote]}
       <div>
-        <button onClick={random}>next anecdote</button>
+        <button onClick={doVote}>vote</button>
+        <button onClick={doRandom}>next anecdote</button>
       </div>
     </div>
   )
 }
 
 export default App
+0o9
