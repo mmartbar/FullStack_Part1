@@ -1,4 +1,4 @@
-//Exercise 1.13
+//Exercise 1.14
 import { useState } from 'react'
 
 
@@ -22,6 +22,7 @@ const App = () => {
   
   console.log ('anecdote', selected.anecdote)
   console.log ('votes', selected.votes)
+  console.log ('anecdote votes', selected.votes[selected.anecdote])
 
   const doRandom = () => {
     const min = 0
@@ -49,16 +50,24 @@ const App = () => {
     )
   }
 
+  console.log ('most votes', Math.max(...selected.votes))
+  console.log ('most voted index', selected.votes.indexOf(Math.max(...selected.votes)))
+
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected.anecdote]}
+      <div>
+        has {selected.votes[selected.anecdote]} votes
+      </div>
       <div>
         <button onClick={doVote}>vote</button>
         <button onClick={doRandom}>next anecdote</button>
       </div>
+      <h1>Anecdote with most votes</h1>
+      {anecdotes[selected.votes.indexOf(Math.max(...selected.votes))]}
     </div>
   )
 }
 
 export default App
-0o9
